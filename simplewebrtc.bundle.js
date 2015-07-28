@@ -328,8 +328,8 @@ SimpleWebRTC.prototype.setVolumeForAll = function (volume) {
 
 SimpleWebRTC.prototype.joinRoom = function (name, cb) {
     var self = this;
-    this.roomName = name;
-    this.connection.emit('join', name, function (err, roomDescription) {
+    this.roomName = name.toString();
+    this.connection.emit('join', roomName, function (err, roomDescription) {
         if (err) {
             self.emit('error', err);
         } else {
@@ -360,7 +360,7 @@ SimpleWebRTC.prototype.joinRoom = function (name, cb) {
         }
 
         if (cb) cb(err, roomDescription);
-        self.emit('joinedRoom', name);
+        self.emit('joinedRoom', roomName);
     });
 };
 
